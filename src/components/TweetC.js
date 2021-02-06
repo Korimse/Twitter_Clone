@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 
 const TweetC = ({ tweetObj, isOwner }) => {
@@ -9,6 +9,7 @@ const TweetC = ({ tweetObj, isOwner }) => {
         console.log(ok)
         if (ok) {
             await dbService.doc(`tweets/${tweetObj.id}`).delete();
+            await storageService.refFromURL(tweetObj.attachmentUrl).delete();
         }
     };
     const toggleEditing = () => setEditing(prev => !prev);
