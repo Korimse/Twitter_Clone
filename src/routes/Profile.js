@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom";
 export default ({ refreshUser, userObj }) => {
     const history = useHistory();
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
-    const onLogOutClick = () => { authService.signOut(); history.push("/"); };
+    const onLogOutClick = () => {
+        authService.signOut();
+        history.push("/");
+    };
     const onChange = (event) => {
         const {
             target: { value },
